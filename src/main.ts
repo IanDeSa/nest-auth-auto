@@ -6,9 +6,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('NestJS Prisma Example')
-    .setDescription('API documentation for NestJS Prisma Example')
+    .setTitle('Dashboard Insight API')
+    .setDescription('Documentação da API feita por Ian Santos')
     .setVersion('1.0')
+    .addTag('users')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

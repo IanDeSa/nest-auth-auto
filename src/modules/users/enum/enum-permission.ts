@@ -1,5 +1,5 @@
 export enum Permission {
-  'Admin',
-  'Colaborador',
-  'Visualizador',
+  Admin = 'Admin',
+  Colaborador = 'Colaborador',
+  Visualizador = 'Visualizador',
 }
