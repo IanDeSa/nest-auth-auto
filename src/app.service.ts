@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Iniciando o projeto';
+    const port = process.env.PORT || 3000;
+    return `Projeto rodando na porta: ${port}`;
   }
 }
