@@ -24,7 +24,10 @@ export class CustomExceptionFilter implements ExceptionFilter {
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
-      message: exception.message || 'Internal Server Error',
+      message:
+        exception.response.message ||
+        exception.message ||
+        'Internal Server Error',
     });
   }
 }

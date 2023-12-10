@@ -1,23 +1,15 @@
 import { User } from '../entities/user.entity';
-import {
-  IsEmail,
-  IsString,
-  Matches,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { Permission } from '../enum/enum-permission';
+import { IsPassword } from 'src/middlewares/validators/password.validator';
 
 export class CreateUserDto extends User {
   @IsEmail()
   email: string;
 
   @IsString()
-  @MinLength(4)
-  @MaxLength(20)
-  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-    message: 'password too weak',
-  })
+  @IsNotEmpty()
+  @IsPassword({ message: 'A senha deve atender aos critérios especificados.' })
   password: string;
 
   @IsString()

@@ -15,7 +15,17 @@ export class UsersService {
     });
 
     if (usernameExists) {
-      throw new HttpException('User already exists', HttpStatus.CONFLICT);
+      throw new HttpException('Nome de usuário já existe', HttpStatus.CONFLICT);
+    }
+
+    const emailExists = await this.prismaService.user.findFirst({
+      where: {
+        email: createUserDto.email,
+      },
+    });
+
+    if (emailExists) {
+      throw new HttpException('Email já cadastrado', HttpStatus.CONFLICT);
     }
 
     const data: CreateUserDto = {
@@ -23,7 +33,10 @@ export class UsersService {
       password: await bcrypt.hash(createUserDto.password, 10),
     };
     const userCreated = await this.prismaService.user.create({ data });
-    return userCreated;
+    return {
+      ...userCreated,
+      password: undefined,
+    };
   }
 
   async findAll() {
