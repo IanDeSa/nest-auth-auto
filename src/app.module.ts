@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { UsersModule } from './modules/users/users.module';
 import { APP_FILTER } from '@nestjs/core';
 import { CustomExceptionFilter } from './middlewares/CustomExceptionFilter';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [UsersModule],
+  imports: [UsersModule, AuthModule],
   controllers: [AppController],
   providers: [
     AppService,

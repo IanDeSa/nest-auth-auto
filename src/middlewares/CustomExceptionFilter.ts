@@ -25,7 +25,7 @@ export class CustomExceptionFilter implements ExceptionFilter {
       timestamp: new Date().toISOString(),
       path: request.url,
       message:
-        exception.response.message ||
+        exception?.response?.message ||
         exception.message ||
         'Internal Server Error',
     });

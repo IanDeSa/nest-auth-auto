@@ -8,19 +8,6 @@ export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async create(createUserDto: CreateUserDto) {
-    const usernameExists = await this.prismaService.user.findFirst({
-      where: {
-        username: createUserDto.username,
-      },
-    });
-
-    if (usernameExists) {
-      throw new HttpException(
-        'Nome de usuário já existente',
-        HttpStatus.CONFLICT,
-      );
-    }
-
     const emailExists = await this.prismaService.user.findFirst({
       where: {
         email: createUserDto.email,

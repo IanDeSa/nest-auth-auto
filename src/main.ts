@@ -17,6 +17,11 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Dashboard Insight API')
     .setDescription('Documentação da API feita por Ian Santos')
+    .setContact(
+      'Ian Santos',
+      'https://github.com/IanDeSa/dashboard-insight-api',
+      'contato.iansantos@gmail.com',
+    )
     .setVersion('1.0')
     .addTag('users')
     .build();
