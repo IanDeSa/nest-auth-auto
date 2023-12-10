@@ -15,7 +15,10 @@ export class UsersService {
     });
 
     if (usernameExists) {
-      throw new HttpException('Nome de usuário já existe', HttpStatus.CONFLICT);
+      throw new HttpException(
+        'Nome de usuário já existente',
+        HttpStatus.CONFLICT,
+      );
     }
 
     const emailExists = await this.prismaService.user.findFirst({
@@ -44,15 +47,45 @@ export class UsersService {
     return user;
   }
 
-  // async findOne(id: number) {
-  //   return `This action returns a #${id} user`;
-  // }
+  async findOneByUsername(username: string) {
+    const user = await this.prismaService.user.findFirst({
+      where: {
+        username,
+      },
+    });
+
+    if (user) {
+      const userReturn = { ...user, password: undefined };
+      return userReturn;
+    }
+    throw new HttpException(
+      'Nome de usuário não encontrado',
+      HttpStatus.NOT_FOUND,
+    );
+  }
 
   // async update(id: number, updateUserDto: UpdateUserDto) {
   //   return `This action updates a #${id} user`;
   // }
 
-  // async remove(id: number) {
-  //   return `This action removes a #${id} user`;
-  // }
+  async remove(id: string) {
+    const userExist = await this.prismaService.user.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!userExist) {
+      throw new HttpException('Usuário não encontrado', HttpStatus.NOT_FOUND);
+    }
+
+    const user = await this.prismaService.user.delete({
+      where: {
+        id,
+      },
+    });
+    return {
+      message: `${user.username} deletado com sucesso`,
+    };
+  }
 }

@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
 import {
   ApiTags,
@@ -37,6 +37,15 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @Get(':username')
+  @ApiOperation({
+    summary: 'Busca usuário pelo username',
+    description: 'Retorna o usuário com o username correspondente',
+  })
+  async findOneByUsername(@Param('username') username: string) {
+    return this.usersService.findOneByUsername(username);
+  }
+
   // @Get(':id')
   // findOne(@Param('id') id: string) {
   //   return this.usersService.findOne(+id);
@@ -47,8 +56,12 @@ export class UsersController {
   //   return this.usersService.update(+id, updateUserDto);
   // }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.usersService.remove(+id);
-  // }
+  @Delete(':id')
+  @ApiOperation({
+    summary: 'Deleta um usuário pelo id',
+    description: 'Retorna uma mensagem de sucesso',
+  })
+  remove(@Param('id') id: string) {
+    return this.usersService.remove(id);
+  }
 }
