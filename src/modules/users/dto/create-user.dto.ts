@@ -1,27 +1,28 @@
-// src/app/modules/user/dto/create-user.dto.ts
-import { ApiProperty } from '@nestjs/swagger';
+import { User } from '../entities/user.entity';
+import {
+  IsEmail,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 import { Permission } from '../enum/enum-permission';
-import { IsEmail, IsString } from 'class-validator';
 
-export class CreateUserDto {
-  @ApiProperty({ example: 'john_doe', description: 'Nome do usuário' })
-  @IsString()
-  username: string;
-
-  @ApiProperty({ example: 'password123', description: 'Senha do usuário' })
-  @IsString()
-  password: string;
-
-  @ApiProperty({
-    example: 'john@example.com',
-    description: 'E-mail do usuário',
-  })
+export class CreateUserDto extends User {
   @IsEmail()
   email: string;
 
-  @ApiProperty({
-    enum: Permission,
-    description: 'Nível de permissão do usuário',
+  @IsString()
+  @MinLength(4)
+  @MaxLength(20)
+  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+    message: 'password too weak',
   })
+  password: string;
+
+  @IsString()
+  username: string;
+
+  @IsString()
   permission: Permission;
 }

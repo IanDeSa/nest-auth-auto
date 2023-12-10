@@ -18,11 +18,6 @@ export class UsersController {
   @ApiOperation({
     summary: 'Buscar todos os usuários',
     description: 'Retorna todos os usuários do banco de dados.',
-    tags: ['users'],
-    responses: {
-      200: { description: 'Usuários encontrados com sucesso.' },
-      404: { description: 'Nenhum usuário encontrado.' },
-    },
   })
   async findAll() {
     return this.usersService.findAll();
@@ -32,7 +27,6 @@ export class UsersController {
   @ApiOperation({
     summary: 'Criar novo usuário',
     description: 'Cria um novo usuário com base nos dados fornecidos.',
-    tags: ['users'],
   })
   @ApiBody({ type: CreateUserDto })
   @ApiCreatedResponse({ description: 'Usuário criado com sucesso.' })
