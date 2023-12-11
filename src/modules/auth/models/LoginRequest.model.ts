@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
-import { IsPassword } from 'src/middlewares/validators/password.validator';
+import { IsPassword } from 'src/modules/auth/validators/password.validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from 'src/modules/users/entities/user.entity';
 

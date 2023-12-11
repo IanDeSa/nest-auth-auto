@@ -1,7 +1,7 @@
 import { User } from '../entities/user.entity';
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { Permission } from '../enum/enum-permission';
-import { IsPassword } from 'src/middlewares/validators/password.validator';
+import { IsPassword } from 'src/modules/auth/validators/password.validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateUserDto extends User {
