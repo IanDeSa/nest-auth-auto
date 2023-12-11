@@ -34,21 +34,13 @@ export class UsersService {
     return user;
   }
 
-  async findOneByUsername(username: string) {
+  async findByEmail(email: string) {
     const user = await this.prismaService.user.findFirst({
       where: {
-        username,
+        email,
       },
     });
-
-    if (user) {
-      const userReturn = { ...user, password: undefined };
-      return userReturn;
-    }
-    throw new HttpException(
-      'Nome de usuário não encontrado',
-      HttpStatus.NOT_FOUND,
-    );
+    return user;
   }
 
   // async update(id: number, updateUserDto: UpdateUserDto) {

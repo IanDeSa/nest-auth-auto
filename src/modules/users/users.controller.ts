@@ -37,15 +37,6 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Get(':username')
-  @ApiOperation({
-    summary: 'Busca usuário pelo username',
-    description: 'Retorna o usuário com o username correspondente',
-  })
-  async findOneByUsername(@Param('username') username: string) {
-    return this.usersService.findOneByUsername(username);
-  }
-
   // @Get(':id')
   // findOne(@Param('id') id: string) {
   //   return this.usersService.findOne(+id);

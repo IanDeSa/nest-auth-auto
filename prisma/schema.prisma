@@ -12,7 +12,7 @@ model User {
   username   String     @unique
   email      String     @unique
   password   String
-  permission Permission @default(Visualizador)
+  permission Permission @default(Colaborador)
 
   @@map("users")
 }
