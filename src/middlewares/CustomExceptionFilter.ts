@@ -20,6 +20,8 @@ export class CustomExceptionFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
+    console.log(exception);
+
     response.status(status).json({
       statusCode: status,
       timestamp: new Date().toISOString(),
