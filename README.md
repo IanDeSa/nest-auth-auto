@@ -64,5 +64,5 @@ $ npm run test:cov
 
 ## Swagger e documentação
 ```url
-$ http://localhost:3000/api
+$ http://localhost:3000/swagger
 ```
