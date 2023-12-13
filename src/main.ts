@@ -23,6 +23,7 @@ async function bootstrap() {
       'contato.iansantos@gmail.com',
     )
     .setVersion('1.0')
+    .addBearerAuth()
     .addTag('users')
     .build();
 

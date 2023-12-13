@@ -4,6 +4,6 @@ import { Injectable } from '@nestjs/common';
 export class AppService {
   getHello(): string {
     const port = process.env.PORT || 3000;
-    return `Projeto rodando na porta: ${port}`;
+    return `Boas-vindas ao meu projeto. Eu me chamo Ian Santos e informo que esse projeto rodando na porta: ${port}`;
   }
 }

@@ -31,7 +31,10 @@ export class UsersService {
 
   async findAll() {
     const user = await this.prismaService.user.findMany();
-    return user;
+    return {
+      ...user,
+      password: undefined,
+    };
   }
 
   async findByEmail(email: string) {
